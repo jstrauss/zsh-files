@@ -6,6 +6,7 @@ autoload -U colors && colors
 # ALIASES
 alias ~='cd ~'
 alias -- -='cd -'
+alias dev='cd ~/web'
 
 alias python='python3'
 alias pip='pip3'
@@ -58,8 +59,9 @@ function activate() {
 }
 
 # GIT CONFIG
-git config --global user.name "[insert_your_github_name]"
-git config --global user.email "[insert_your_github_email]"
+# Before using, make sure to set your git username and email to match your GitHub account, otherwise you won't be able to push to GitHub.
+-git config --global user.name "[insert_your_github_name]"
+-git config --global user.email "[insert_your_github_email]"
 
 # SET PROMPT FUNCTION
 source ~/.zsh_prompt
