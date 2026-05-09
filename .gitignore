@@ -1,0 +1,40 @@
+# Byte-compiled / Word-compiled scripts
+*.zwc
+
+# Environment variables (highly sensitive)
+.env
+.env.*
+!.env.example
+
+# Temporary and Swap files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Logs
+*.log
+logs/
+
+# Zsh history (if local to the project)
+.zsh_history
+
+# Local zsh configuration overrides
+.zshrc.local
+
+# Dependency / Plugin directories
+.antigen/
+.oh-my-zsh/
+plugins/
+themes/
+vendor/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Test results and coverage
+coverage/
+*.out
