@@ -13,12 +13,12 @@ alias pip='pip3'
 
 alias reload='source ~/.zshrc'
 
+alias ls='gls --group-directories-first --color=auto'
 alias ll='ls -lF'
-alias la='ls -laF'
+alias la='ls -lAF'
 alias l='ls -CF'
 alias lsh='ls -lF -d .*'
-alias lsd='ls -lF | grep --color=auto "^d"'
-alias ls='ls -G'
+alias lsd='ls -lF .*/ */'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -65,3 +65,49 @@ function activate() {
 
 # SET PROMPT FUNCTION
 source ~/.zsh_prompt
+
+# LOCAL AI SPECIFIC STUFF
+
+# Standard 128k High-Precision Configuration
+# Use for everyday code & analysis
+qwen_128k() {
+  llama-server \
+    -hf unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL \
+    -c 131072 \
+    --cache-type-k q8_0 \
+    --cache-type-v q8_0 \
+    --cache-ram 24576 \
+    --flash-attn on \
+    --temp 0.6 \
+    --top-p 0.95 \
+    --top-k 20 \
+    --chat-template-kwargs '{"preserve_thinking": true}' \
+    --host 127.0.0.1 \
+    --threads 8 \
+    --port 8080
+}
+
+# Extended 160k Maximum Capacity Configuration
+# Use for large-context tasks where precision is less critical (massine file ingestion; long document analysis)
+qwen_160k() {
+  llama-server \
+    -hf unsloth/Qwen3.6-27B-GGUF:UD-Q4_K_XL \
+    -c 163840 \
+    --cache-type-k q4_0 \
+    --cache-type-v q4_0 \
+    --cache-ram 24576 \
+    --flash-attn on \
+    --temp 0.6 \
+    --top-p 0.95 \
+    --top-k 20 \
+    --chat-template-kwargs '{"preserve_thinking": true}' \
+    --host 127.0.0.1 \
+    --threads 8 \
+    --port 8080
+}
+
+# SERVE QWEN-IMAGE LOCALLY WITH COMFYUI
+alias serve_qimage='python3 ~/web/ComfyUI/main.py'
+
+# GO TO DIRECTORY FOR OPENCODE LOGS
+alias localai='cd ~/.local/share/opencode'
